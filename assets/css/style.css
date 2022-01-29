@@ -1,0 +1,654 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box; /* поля и отступы не увеличат ширину контейера */
+}
+
+body {
+	font-family: "Oswald", sans-serif;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: 300;
+	color: #2c2b2b;
+}
+#instagram path {
+	fill: #000;
+}
+.test path {
+	fill: #000;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+	display: inline-block; /* для ссылок (строчные элементы) будут применяться блочные свойства */
+}
+
+.container {
+	max-width: 1240px; /* с учётом полей безопасности */
+	/* центруем элемент с фиклированной шириной */
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 20px; /* поля безопасности */
+}
+
+.header {
+	background-image: url(../images/header-bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover; /* растягиваем изображение */
+	background-position: top center;
+	min-height: 700px;
+	color: #fff;
+}
+
+.header__top {
+	padding: 47px 0 45px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.phone {
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 54px;
+}
+
+.header__content {
+	padding-top: 60px;
+	position: relative;
+}
+
+.header__title {
+	font-size: 72px;
+	font-weight: 400;
+	line-height: 107px;
+	text-transform: uppercase;
+}
+
+.header__subtitle {
+	font-size: 36px;
+	line-height: 54px;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-bottom: 30px;
+}
+
+.header__text {
+	margin-bottom: 30px;
+	max-width: 800px;
+}
+
+.button {
+	font-size: 14px;
+	line-height: 21px;
+	text-transform: uppercase;
+	padding: 14px 54px 15px;
+	background-color: #5a0d67;
+	transition: all 0.5s;
+}
+
+.button:hover {
+	color: #5a0d67;
+	background-color: #fff;
+}
+
+.header__social {
+	padding: 70px 0 20px 70px;
+}
+
+.social {
+	display: flex;
+	align-items: center;
+}
+
+.social__link {
+	margin: 0 5px;
+}
+
+.header__images {
+	position: absolute;
+	right: 0;
+	bottom: -270px;
+}
+
+.services {
+	padding-top: 270px;
+}
+
+.title {
+	color: #21062a;
+	font-size: 36px;
+	line-height: 54px;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-bottom: 50px;
+	position: relative;
+}
+
+.title::after {
+	content: "";
+	width: 80px;
+	height: 3px;
+	background-color: #21062a;
+	position: absolute;
+	top: 20px;
+	margin-left: 20px;
+}
+
+.services__inner {
+	display: flex;
+	margin-bottom: 100px;
+}
+
+.services__content {
+	width: 505px;
+	margin-right: 96px;
+}
+
+.services__content-title {
+	color: #5a0d67;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: 300;
+	margin-bottom: 12px;
+}
+
+.services__content-textbox {
+	margin-bottom: 57px;
+}
+
+.services__content-text {
+	margin-bottom: 12px;
+}
+
+.button--decor {
+	margin-top: -7px;
+	color: #fff;
+	position: relative;
+}
+
+/* расположили слово после кнопки */
+.button--decor::after {
+	content: "ЖМИ";
+	color: #c4c4c4;
+	margin-left: 130px;
+	position: absolute;
+}
+
+/* нарисовали и расположили полосочку */
+.button--decor::before {
+	content: "";
+	width: 80px;
+	height: 2px;
+	background-color: #c4c4c4;
+	position: absolute;
+	right: -65px;
+	top: 24px;
+}
+
+/* В нумерованном списке меняем цифры (например: не 1 а 01): */
+.services__list {
+	list-style: none; /* 1- сбрасываем стили нумерованного списка (цифры исчезнут) */
+	counter-reset: my-counter; /* 2- устанавливаем переменную, в которой будет храниться счётчик отображений определенного элемента, а также начальное значение счётчика Название переменной можем указать любое (здесь- my-counter) */
+}
+
+/* для элементов нумерованного списка (li) укажем: */
+.services__item {
+	counter-increment: my-counter; /* 3- стилевое свойство предназначено для увеличения значения счётчика приращений, который задается свойством counter-reset */
+	border: 2px solid #c4c4c4;
+	margin-bottom: 12px;
+	width: 450px;
+	padding: 10px 15px 10px 113px;
+	position: relative;
+	transition: all 0.5s;
+}
+
+/* стили для цифр нашего списка: */
+.services__item::before {
+	content: "0" counter(my-counter); /* 4- пропишем что должно располагаться в начале нумерованного списка (здесь- цифра 0) и чтобы отобразить значение счётчика - используем функцию counter() в которую передаём начальное значение счётчика */
+	position: absolute;
+	left: 20px;
+	font-size: 36px;
+	line-height: 54px;
+	font-weight: 400;
+	color: #c4c4c4;
+	transform: rotate(270deg); /* поворот цифр */
+	transition: all 0.5s;
+}
+
+/* при наведении меняется граница и ширина элемента */
+.services__item:hover {
+	border: 2px solid #5a0d67;
+	width: 500px;
+}
+/* при наведении меняется цвет заголовка элемента */
+.services__item:hover .services__item-title {
+	color: #5a0d67;
+}
+/* при наведении меняется цвет цифр элемента */
+.services__item:hover::before {
+	color: #5a0d67;
+}
+
+.services__item-title {
+	font-size: 24px;
+	font-weight: 300;
+}
+
+.benefits {
+	margin-bottom: 100px;
+}
+
+.benefits__inner {
+	display: flex;
+}
+
+.benefits__images {
+	margin-right: 95px;
+}
+
+.benefits__content {
+	width: 100%;
+	color: #fff;
+}
+
+.benefits__title {
+	margin-left: 185px;
+}
+
+.benefits__list {
+	list-style: none;
+	background-color: #21062a;
+	padding: 25px 0 25px 185px;
+}
+
+.benefits__item {
+	width: 320px;
+	margin-bottom: 20px;
+}
+
+.benefits__item-num {
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 54px;
+}
+
+.benefits__item-title {
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: 300;
+}
+
+.benefits__item-text {
+	color: #c4c4c4;
+}
+
+.carousel {
+	margin-bottom: 100px;
+}
+
+.carousel__inner {
+	margin: 0 -7px;
+}
+
+.carousel__item {
+	margin: 0 7px;
+}
+
+.carousel__item-box {
+	border: 1px solid #c4c4c4;
+	padding: 6px 6px 16px 6px;
+	text-align: center;
+	transition: all 0.5s;
+}
+
+.carousel__item-box:hover {
+	color: #fff;
+	background-color: #5a0d67;
+	border-color: #5a0d67;
+}
+
+/* картинки слайдера */
+.carousel__item-img {
+	max-width: 100%;
+	margin-bottom: 23px;
+}
+
+.carousel__item-title {
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+
+/* только для slick-dots(точек) которые находятся в классе carousel */
+.carousel .slick-dots {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	list-style: none; /* убираем маркеры, которые добавлены автоматически (по умолчанию) */
+}
+
+.carousel .slick-dots button {
+	font-size: 0; /* убираем цифры внутри slick-dots, которые появились автоматически (по умолчанию) */
+	border: none; /* убираем границу вокруг slick-dots (по умолчанию) */
+	padding: 0; /* убираем внутренние отступы (поля), установленные по умолчанию */
+	margin: 0 10px;
+	background-color: #c4c4c4;
+	width: 50px;
+	height: 2px;
+}
+
+.carousel .slick-active button {
+	background-color: #5a0d67;
+	height: 3px;
+}
+
+.contacts__inner {
+	display: flex;
+	justify-content: space-between;
+}
+
+.contacts__list {
+	list-style: none;
+}
+
+.contacts__item {
+	margin-bottom: 20px;
+}
+
+.contacts__item-title {
+	color: #5a0d67;
+}
+
+.contacts__form {
+	background-color: #21062a;
+	padding: 50px 75px 57px;
+	text-align: center;
+}
+
+.contacts__title {
+	color: #fff;
+	margin-bottom: 16px;
+	margin-left: 53px;
+	text-align: left;
+}
+
+.contacts__title::after {
+	background-color: #fff;
+}
+
+.contacts__input {
+	background-color: transparent;
+	width: 450px;
+	height: 75px;
+	color: #fff;
+	border: 1px solid #fff;
+	margin-bottom: 12px;
+	display: block;
+	font-size: 24px;
+	padding: 0 15px;
+	text-align: center;
+}
+
+.contacts__input::placeholder {
+	text-align: center;
+	font-family: "Oswald", sans-serif;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: 300;
+	color: #c4c4c4;
+}
+
+.contacts__btn {
+	border: none;
+	color: #fff;
+	margin-top: 78px;
+	cursor: pointer;
+	font-family: "Oswald", sans-serif;
+}
+
+.footer {
+	background-color: #21062a;
+}
+
+.footer__inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	height: 100px;
+}
+
+@media (max-width: 1140px) {
+	.services__item:hover {
+		width: 450px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.header__images {
+		width: 80%;
+	}
+	.services {
+		padding-top: 250px;
+	}
+	/* позволим элементам блока перескакивать друг под друга если они не помещаютья на экране */
+	.services__inner {
+		flex-wrap: wrap;
+	}
+	.services__list {
+		order: -1; /* переместили список преимуществ выше текстовой части */
+		margin-bottom: 30px;
+		/* задаём ширину списка преимуществ и каждому его элементу и обязательно тоже при наведении */
+		width: 100%;
+	}
+	.services__item {
+		width: 100%;
+	}
+	.services__item:hover {
+		width: 100%;
+	}
+
+	/* задаём ширину текстовой части блока */
+	.services__content {
+		width: 100%;
+		margin-right: 0;
+	}
+
+	/* размещаем содержимое блока по центру и позволяем содержимому переходить на новую строку */
+	.benefits__inner {
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	.benefits__images {
+		margin-bottom: 50px;
+		/* display: none; */
+		margin-right: 0;
+	}
+	.benefits__list {
+		padding: 25px 15px;
+	}
+	/* задаём ширину элементов блока */
+	.benefits__item {
+		width: 100%;
+	}
+	/* заголовок блока станет по центру */
+	.benefits__title {
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 955px) {
+	.phone {
+		font-size: 24px;
+		line-height: 36px;
+	}
+	.header__title {
+		font-size: 54px;
+		line-height: 74px;
+	}
+	.header__subtitle {
+		font-size: 24px;
+		line-height: 36px;
+		margin-bottom: 20px;
+	}
+	.header__social {
+		padding: 30px 0 20px 53px;
+	}
+	.contacts__inner {
+		display: block;
+		text-align: center;
+	}
+	.contacts__list {
+		margin-bottom: 30px;
+	}
+	.contacts__input {
+		width: 100%;
+	}
+	.contacts__btn {
+		margin-top: 20px;
+	}
+	.contacts__title {
+		text-align: center;
+		margin-left: 0;
+	}
+}
+
+/* @media (max-width: 768px) {
+	.benefits__inner {
+		text-align: center;
+	}
+	.benefits__list {
+		padding: 25px 15px;
+	}
+	.benefits__item {
+		width: 100%;
+	}
+	.benefits__title {
+		margin-left: 0;
+	}
+	.benefits__item {
+		width: 100%;
+	}
+} */
+
+@media (max-width: 650px) {
+	.footer__inner {
+		flex-wrap: wrap;
+		justify-content: center;
+		height: auto;
+		padding: 20px 0;
+		text-align: center;
+	}
+	.footer__social {
+		width: 100%;
+		justify-content: center;
+		margin: 25px 0;
+	}
+}
+
+@media (max-width: 600px) {
+	/* центрируем контент шапки и соц.иконки */
+	.header__content {
+		padding-top: 0;
+		text-align: center;
+	}
+	.header__social {
+		padding: 30px 0 20px 0px;
+	}
+	.social {
+		justify-content: center;
+	}
+
+	.services {
+		padding-top: 150px;
+	}
+	.title {
+		font-size: 28px;
+		line-height: 36px;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	.title::after {
+		display: none;
+	}
+	body {
+		font-size: 16px;
+		line-height: 22px;
+	}
+	.services__item::before {
+		top: 5px;
+	}
+	/* центрируем текстовую часть блока */
+	.services__content {
+		text-align: center;
+	}
+	.benefits__item-num {
+		font-size: 28px;
+		line-height: 36px;
+	}
+	.carousel__item-img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 520px) {
+	/* поместим телефон под логотип */
+	.header__top {
+		flex-wrap: wrap;
+		justify-content: center;
+		text-align: center;
+	}
+	.logo {
+		margin-bottom: 20px;
+		width: 100%; /* логотип займёт всю строку и телефон перепрыгнет на другую строку */
+	}
+
+	.header__title {
+		margin-bottom: 20px;
+	}
+	/* картинку с авто переместим на фон и вернём начальный размер */
+	.header__images {
+		position: static;
+		width: 100%;
+	}
+
+	.services {
+		padding-top: 50px;
+	}
+	.services__item {
+		padding: 10px 15px 10px 60px;
+	}
+	.services__item::before {
+		left: 11px;
+	}
+	.button--decor::before {
+		right: -50px;
+	}
+	.button--decor::after {
+		margin-left: 110px;
+	}
+	.services__inner,
+	.benefits,
+	.carousel {
+		margin-bottom: 50px;
+	}
+	.carousel .slick-dots button {
+		width: 10px;
+	}
+	.contacts__form {
+		padding: 50px 10px 57px;
+	}
+	.button--decor::before,
+	.button--decor::after {
+		display: none;
+	}
+}
+
+@media (max-width: 340px) {
+	.header__title {
+		font-size: 44px;
+		line-height: 50px;
+	}
+}

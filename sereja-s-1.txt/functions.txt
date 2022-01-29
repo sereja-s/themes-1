@@ -1,0 +1,24 @@
+1- на сайте: https://wp-kama.ru/ -> переходим в WordPress -> Шпаргалка -> раздел Script и Style -> функция -> wp_enqueue_style() -> в Примерах (Подключение через событие) копируем код и вставляем в functions.php в экранирующую последовательность <?php ?>:
+
+<?php 
+
+// правильный способ подключить стили и скрипты в хук-событии: add_action()
+add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
+// add_action('wp_print_styles', 'theme_name_scripts'); // можно использовать этот хук он более поздний
+function theme_name_scripts() {
+	// укажем функции подключающие скрипты и стили:
+	wp_enqueue_style( 'style-name', get_stylesheet_uri() );
+	wp_enqueue_script( 'script-name', get_template_directory_uri() . '/js/example.js', array(), '1.0.0', true );
+}
+
+?>
+
+2- оптимизируем код, подключаем все стили
+3- в Шпаргалке через поиск находим функцию: add_theme_support() она регистрирует поддержку новых возможностей темы в WordPress (поддержка миниатюр, форматов записей и т.д.). Прописываем все необходимые нам возможности в файле functions.php
+
+4- так же нужно подключить скрипты:
+	4.1- переходим в файл footer.php и закомментировав подключение скриптов, прописываем выше функцию: <?php wp_footer(); ?>
+	4.2- в файле functions.php в функции wp_enqueue_scripts подключаем все скрипты
+
+5- отключим версию jquery, которая уже есть на сайте и подключим необходимую нам:
+	5.1- находим в шпаргалке в поиске: Подключение jQuery с Google CDN с авто-определением версии -> jQuery с Google CDN -> копируем часть кода и вставляем в functions.php
