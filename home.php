@@ -130,48 +130,47 @@ Template Name: Home
 		</h2>
 		<div class="carousel__inner">
 
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/1.jpg" alt="">
-					<h4 class="carousel__item-title">INFINITI QX50 2016 г.</h4>
-					<p class="carousel__item-text">Экономия 4500 $</p>
-				</div>
-			</div>
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/2.jpg" alt="">
-					<h4 class="carousel__item-title">TESLA MODEL 3 2018 г.</h4>
-					<p class="carousel__item-text">Экономия 5500 $</p>
-				</div>
-			</div>
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/3.jpg" alt="">
-					<h4 class="carousel__item-title">TESLA MODEL 3 2018 г.</h4>
-					<p class="carousel__item-text">Экономия 5500 $</p>
-				</div>
-			</div>
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/1.jpg" alt="">
-					<h4 class="carousel__item-title">INFINITI QX50 2016 г.</h4>
-					<p class="carousel__item-text">Экономия 4500 $</p>
-				</div>
-			</div>
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/2.jpg" alt="">
-					<h4 class="carousel__item-title">TESLA MODEL 3 2018 г.</h4>
-					<p class="carousel__item-text">Экономия 5500 $</p>
-				</div>
-			</div>
-			<div class="carousel__item">
-				<div class="carousel__item-box">
-					<img class="carousel__item-img" src="<?php bloginfo('template_url'); ?>/assets/images/carousel/3.jpg" alt="">
-					<h4 class="carousel__item-title">TESLA MODEL 3 2018 г.</h4>
-					<p class="carousel__item-text">Экономия 5500 $</p>
-				</div>
-			</div>
+			<!-- Цикл проверяющий есть ли посты-слайдов -->
+			<?php
+			global $post;
+
+			$myposts = get_posts([
+				'numberposts' => -1, // указали кол-во выводимых постов (при такой записи будут выводиться все посты-слайды)
+				/* 'offset'      => 1,
+				'category'    => 1 */
+			]);
+
+			//цикл пробегает все посты, если посты-слайды есть, то они выводтся  
+			if ($myposts) {
+				foreach ($myposts as $post) {
+					//функция устанавливает всевозможные данные поста: 
+					setup_postdata($post);
+			?>
+
+					<div class="carousel__item">
+						<div class="carousel__item-box">
+
+							<?php the_post_thumbnail(
+								// укажем размер выводимой картинки в слайде
+								array(380, 250),
+								// укажем класс для картинки (что бы применились прописанные для него стили):
+								array(
+									'class' => "carousel__item-img",
+								),
+
+							); ?>
+
+							<h4 class="carousel__item-title"><?php the_title(); ?></h4>
+							<p class="carousel__item-text"><?php the_content(); ?></p>
+						</div>
+					</div>
+
+			<?php
+				}
+			}
+			wp_reset_postdata(); // Сбрасываем $post
+			?>
+
 		</div>
 	</div>
 </section>
@@ -203,16 +202,17 @@ Template Name: Home
 					<li class="contacts__item">
 						<p class="contacts__item-title">Телефон</p>
 						<p class="contacts__item-text">
-							+38 (050) 555 66 77
+							<a href="tel:<?php the_field('phone-number'); ?>"><?php the_field('phone'); ?></a>
 						</p>
 					</li>
 				</ul>
 			</div>
 			<form class="contacts__form">
 				<h2 class="title contacts__title">Оставить заявку</h2>
-				<input class="contacts__input" type="text" placeholder="Как Вас зовут?">
+				<?php echo do_shortcode('[contact-form-7 id="24" title="Контактная форма"]'); ?>
+				<!-- <input class="contacts__input" type="text" placeholder="Как Вас зовут?">
 				<input class="contacts__input" type="tel" placeholder="Ваш номер телефона">
-				<button class="contacts__btn button" type="submit">Отправить заявку</button>
+				<button class="contacts__btn button" type="submit">Отправить заявку</button> -->
 			</form>
 		</div>
 	</div>
