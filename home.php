@@ -188,15 +188,13 @@ Template Name: Home
 					<li class="contacts__item">
 						<p class="contacts__item-title">Адрес</p>
 						<p class="contacts__item-text">
-							Киев, Подол <br>
-							ул. Константиновская, д.71
+							<?php the_field('address'); ?>
 						</p>
 					</li>
 					<li class="contacts__item">
 						<p class="contacts__item-title">Время работы</p>
 						<p class="contacts__item-text">
-							Пн-Сб: с 9:00 до 19:00, <br>
-							Вс: выходной
+							<?php the_field('working-hours'); ?>
 						</p>
 					</li>
 					<li class="contacts__item">
