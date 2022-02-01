@@ -16,7 +16,9 @@ Template Name: Home
 		<h2 class="title">НАШИ УСЛУГИ</h2>
 		<div class="services__inner">
 			<div class="services__content">
-				<div class="services__content-box">
+				<?php the_field('service-text'); ?>
+				<a class="button button--decor" href="#">КОНСУЛЬТАЦИЯ ЭКСПЕРТА</a>
+				<!-- <div class="services__content-box">
 					<h6 class="services__content-title">
 						Почему ввоз авто из США?
 					</h6>
@@ -53,11 +55,10 @@ Template Name: Home
 							космических
 							денег.
 						</p>
-					</div>
-					<a class="button button--decor" href="#">КОНСУЛЬТАЦИЯ ЭКСПЕРТА</a>
-				</div>
+					</div>					
+				</div> -->
 			</div>
-			<ol class="services__list">
+			<!-- <ol class="services__list">
 				<li data-wow-delay="1s" class="services__item wow animate__fadeInRight">
 					<p class="services__item-title">Покупка авто</p>
 					<p class="services__item-text">Подбор автомобиля и экспертная проверка</p>
@@ -82,7 +83,8 @@ Template Name: Home
 					<p class="services__item-title">Постановка на учет</p>
 					<p class="services__item-text">Оформление автомобиля в Украине</p>
 				</li>
-			</ol>
+			</ol> -->
+			<?php the_field('service-item'); ?>
 		</div>
 	</div>
 </section>
@@ -91,10 +93,11 @@ Template Name: Home
 <section class="benefits">
 	<div class="container">
 		<div class="benefits__inner">
-			<img data-wow-delay="2s" class="benefits__images wow animate__fadeInUp" src="<?php bloginfo('template_url'); ?>/assets/images/car.png" alt="car">
+			<img data-wow-delay="2s" class="benefits__images wow animate__fadeInUp" src="<?php the_field('benefits-img'); ?>" alt="car">
 			<div class="benefits__content">
 				<h2 class="title benefits__title">ПОЧЕМУ МЫ?</h2>
-				<ul class="benefits__list">
+				<?php the_field('benefits-text'); ?>
+				<!-- <ul class="benefits__list">
 					<li class="benefits__item">
 						<p class="benefits__item-num">650</p>
 						<p class="benefits__item-title">успешно доставленных авто</p>
@@ -116,7 +119,7 @@ Template Name: Home
 							Онлайн отчетность. Вы всегда в курсе статуса подбора вашего авто. Фото и видео отчет
 						</p>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 	</div>
